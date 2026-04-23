@@ -1,129 +1,148 @@
-<<<<<<< HEAD
+<div align="center">
+
 # ⬡ Network Engineering Assistant
 
-A professional, cross-platform Flutter application for network design, subnetting calculations, and Cisco IOS configuration generation.
+### Herramienta profesional para diseño de redes y configuración Cisco IOS
 
-Built for **students**, **network administrators**, and **CCNA/CCNP candidates**.
-
----
-
-## ✨ Features
-
-| Module | Capabilities |
-|---|---|
-| **Addressing Tools** | IPv4 subnetting with step-by-step, IPv6 analysis, VLSM calculator |
-| **Network Designer** | VLAN planner, Router-on-a-Stick config generator |
-| **Routing Assistant** | Static route generator, RIP & OSPF concepts |
-| **Network Services** | NAT planner (Static/Dynamic/PAT), ACL builder (Standard/Extended) |
-| **Learning Mode** | 10 full networking lessons with Cisco IOS examples |
+*Subnetting · VLSM · VLANs · Routing · NAT · ACL · Aprendizaje guiado*
 
 ---
 
-## 📸 Architecture
+![Flutter](https://img.shields.io/badge/Flutter_3.x-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+![Dart](https://img.shields.io/badge/Dart_3.x-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=apple&logoColor=white)
+![Windows](https://img.shields.io/badge/Windows-0078D4?style=for-the-badge&logo=windows&logoColor=white)
+![macOS](https://img.shields.io/badge/macOS-000000?style=for-the-badge&logo=apple&logoColor=white)
+
+</div>
+
+---
+
+## 📌 ¿Qué es Network Engineering Assistant?
+
+Network Engineering Assistant es una aplicación multiplataforma construida en Flutter para estudiantes, administradores de red y candidatos a certificaciones CCNA/CCNP. Permite realizar cálculos de direccionamiento IP, diseño de redes con VLANs, generación automática de configuraciones Cisco IOS y aprendizaje guiado con ejemplos reales.
+
+Toda la lógica de cálculo vive en las capas `/core` y `/engine`, completamente separada de la UI y 100% testeable.
+
+---
+
+## 🧩 Módulos del sistema
+
+| Ícono | Módulo | Descripción |
+|:---:|---|---|
+| 🌐 | **Subnetting IPv4** | Cálculo de subredes con explicación paso a paso en binario |
+| 🔢 | **Análisis IPv6** | Expansión, compresión y clasificación de direcciones IPv6 |
+| 📐 | **Calculadora VLSM** | Variable Length Subnet Masking optimizado por requerimientos |
+| 🏷️ | **Diseñador de VLANs** | Planificación de VLANs con estándar IEEE 802.1Q |
+| 🔀 | **Router-on-a-Stick** | Generador de config para inter-VLAN routing |
+| 🗺️ | **Rutas Estáticas** | Generador de rutas estáticas IPv4/IPv6 y flotantes |
+| 🔄 | **RIP & OSPF** | Conceptos, configuración y límites de protocolos de enrutamiento |
+| 🔁 | **Planificador NAT** | Static, Dynamic y PAT/Overload con config Cisco |
+| 🛡️ | **Constructor ACL** | ACLs estándar, extendidas, nombradas y máscaras wildcard |
+| 📚 | **Modo Aprendizaje** | 10 lecciones completas con ejemplos en Cisco IOS |
+
+---
+
+## 🏗️ Arquitectura del proyecto
 
 ```
 lib/
-├── app/              → Navigation, screens, providers (state)
-├── core/             → Pure calculation logic (no UI)
+├── 📁 app/                     # Navegación, pantallas, providers (estado)
+├── 📁 core/                    # Lógica de cálculo pura (sin UI)
 │   ├── ipv4_calculator.dart
 │   ├── ipv6_calculator.dart
 │   ├── vlsm_calculator.dart
 │   ├── vlan_calculator.dart
 │   └── acl_builder.dart
-├── engine/           → Config generation and lesson content
+├── 📁 engine/                  # Generación de configs y contenido de lecciones
 │   ├── config_generator.dart
 │   ├── explanation_engine.dart
 │   └── router_config_engine.dart
-├── models/           → Immutable data types
-├── components/       → Reusable UI widgets
-└── utils/            → IP math helpers, validators
+├── 📁 models/                  # Tipos de datos inmutables
+├── 📁 components/              # Widgets reutilizables de UI
+└── 📁 utils/                   # Helpers de matemática IP y validadores
 ```
 
-**Key principle:** No calculations happen in the UI layer. All business logic lives in `/core` and `/engine` — fully testable and UI-independent.
+> 💡 **Principio clave:** Ningún cálculo ocurre en la capa de UI. Toda la lógica de negocio vive en `/core` y `/engine`.
 
 ---
 
-## 🚀 Running the App (Developers)
+## 🚀 Instalación local (Desarrolladores)
 
-### 1. Install Flutter
+### Requisitos previos
+- Flutter 3.x y Dart 3.x
+- Un emulador, dispositivo físico o escritorio configurado
 
+### Pasos
+
+**1. Instalar Flutter**
 ```bash
-# macOS/Linux
-curl -O https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_arm64_3.24.0-stable.zip
-unzip flutter_macos_arm64_3.24.0-stable.zip
-export PATH="$PWD/flutter/bin:$PATH"
-
-# Or via Homebrew (macOS)
+# macOS vía Homebrew
 brew install --cask flutter
 
-# Verify
+# Verificar instalación
 flutter doctor
 ```
+> Para Windows, descarga el SDK desde https://docs.flutter.dev/get-started/install
 
-For Windows, download the Flutter SDK from https://docs.flutter.dev/get-started/install
-
-### 2. Clone and run
-
+**2. Clonar el repositorio**
 ```bash
-git clone https://github.com/YOUR_USERNAME/network-engineering-assistant.git
+git clone https://github.com/TU_USUARIO/network-engineering-assistant.git
 cd network-engineering-assistant
-
-# Install dependencies
-flutter pub get
-
-# Run on connected device or desktop
-flutter run                    # auto-detects
-flutter run -d macos           # macOS
-flutter run -d windows         # Windows
-flutter run -d linux           # Linux
-flutter run -d android         # Android emulator/device
 ```
+
+**3. Instalar dependencias**
+```bash
+flutter pub get
+```
+
+**4. Ejecutar la app**
+```bash
+flutter run                  # Detecta dispositivo automáticamente
+flutter run -d android       # Emulador/dispositivo Android
+flutter run -d windows       # Escritorio Windows
+flutter run -d macos         # Escritorio macOS
+flutter run -d linux         # Escritorio Linux
+```
+
+Abre la app en tu dispositivo o emulador ✅
 
 ---
 
-## 📦 Building Executables for End Users
+## 📦 Compilar ejecutables para usuarios finales
 
-### Android APK (direct install)
-
+### Android APK (instalación directa)
 ```bash
 flutter build apk --release
-# Output: build/app/outputs/flutter-apk/app-release.apk
+# Salida: build/app/outputs/flutter-apk/app-release.apk
 ```
 
 ### Android AAB (Google Play Store)
-
 ```bash
 flutter build appbundle --release
-# Output: build/app/outputs/bundle/release/app-release.aab
+# Salida: build/app/outputs/bundle/release/app-release.aab
 ```
 
-### iOS IPA (requires macOS + Xcode)
-
+### iOS IPA (requiere macOS + Xcode)
 ```bash
 flutter build ipa --release
-# Output: build/ios/archive/Runner.xcarchive
-# Then export via Xcode Organizer or:
-xcodebuild -exportArchive \
-  -archivePath build/ios/archive/Runner.xcarchive \
-  -exportOptionsPlist ExportOptions.plist \
-  -exportPath build/ios/ipa
+# Luego exportar desde Xcode Organizer
 ```
 
 ### Windows EXE
-
 ```bash
 flutter build windows --release
-# Output: build/windows/x64/runner/Release/
-# Zip the entire Release/ folder for distribution
+# Salida: build/windows/x64/runner/Release/
+# Comprime la carpeta Release/ completa para distribución
 ```
 
 ### macOS App / DMG
-
 ```bash
 flutter build macos --release
-# Output: build/macos/Build/Products/Release/network_engineering_assistant.app
+# Salida: build/macos/Build/Products/Release/network_engineering_assistant.app
 
-# Create DMG (requires create-dmg):
+# Crear DMG (requiere create-dmg):
 brew install create-dmg
 create-dmg \
   --volname "Network Engineering Assistant" \
@@ -135,86 +154,131 @@ create-dmg \
 ```
 
 ### Linux AppImage
-
 ```bash
 flutter build linux --release
-# Output: build/linux/x64/release/bundle/
-
-# Wrap with appimagetool:
-# https://appimage.github.io/appimagetool/
+# Salida: build/linux/x64/release/bundle/
+# Empaquetar con appimagetool: https://appimage.github.io/appimagetool/
 ```
 
 ---
 
-## 🌐 Uploading to GitHub
+## ☁️ Subir el proyecto a GitHub (Git Bash)
+
+### 1️⃣ Crear repositorio en GitHub
+1. Ve a [github.com](https://github.com) e inicia sesión
+2. Clic en **New repository**
+3. Nombre: `network-engineering-assistant`
+4. **Sin** README, **sin** .gitignore → clic en **Create repository**
+
+### 2️⃣ Inicializar y subir desde Git Bash
 
 ```bash
-# 1. Create a new repo on github.com (no README, no .gitignore)
+# Entrar a la carpeta del proyecto
+cd /ruta/a/network-engineering-assistant
 
-# 2. Initialize and push
-cd network-engineering-assistant
+# Inicializar git
 git init
+
+# Agregar todos los archivos
 git add .
+
+# Primer commit
 git commit -m "feat: initial release — Network Engineering Assistant"
+
+# Renombrar rama principal
 git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/network-engineering-assistant.git
+
+# Conectar con tu repositorio remoto (reemplaza TU_USUARIO)
+git remote add origin https://github.com/TU_USUARIO/network-engineering-assistant.git
+
+# Subir el código
 git push -u origin main
 ```
 
+> 💡 Si Git Bash pide credenciales, usa un **Personal Access Token** en lugar de tu contraseña:
+> GitHub → Settings → Developer settings → Personal access tokens → Generate new token
+
 ---
 
-## 📱 Distribution for Testing
+## 🏷️ Publicar el ZIP en GitHub Releases (para usuarios finales)
 
-### Android — Firebase App Distribution / Direct APK
+### Opción A — Desde la interfaz web de GitHub
+
+1. Ve a tu repositorio en GitHub
+2. En el panel derecho, clic en **Releases → Create a new release**
+3. En **Tag version** escribe: `v1.0.0`
+4. En **Release title** escribe: `Network Engineering Assistant v1.0.0`
+5. En la descripción agrega las novedades o un changelog
+6. En la sección **Attach binaries**, arrastra y suelta tu archivo `AppNetwork.zip`
+7. Clic en **Publish release** 🚀
+
+Los usuarios podrán descargar el ZIP directamente desde:
+`https://github.com/TU_USUARIO/network-engineering-assistant/releases`
+
+### Opción B — Desde Git Bash con GitHub CLI
+
 ```bash
-flutter build apk --release
-# Share the APK via email, Drive, or Firebase App Distribution
-# Testers: Settings → Install unknown apps → enable
+# Instalar GitHub CLI si no lo tienes: https://cli.github.com
+gh auth login
+
+# Crear el release y subir el ZIP en un solo comando
+gh release create v1.0.0 AppNetwork.zip \
+  --title "Network Engineering Assistant v1.0.0" \
+  --notes "Primera versión pública. Incluye: Subnetting IPv4/IPv6, VLSM, VLANs, NAT, ACL y modo aprendizaje."
 ```
 
-### iOS — TestFlight
-1. Build IPA in Xcode
-2. Upload to App Store Connect
-3. Add testers via TestFlight
+### 3️⃣ Para actualizaciones futuras
 
-### Desktop — Direct download
-- Windows: ZIP the `Release/` folder
-- macOS: Share the `.app` or `.dmg`
-- Linux: Share the `bundle/` folder or AppImage
+```bash
+# Cuando tengas cambios nuevos:
+git add .
+git commit -m "feat: descripción del cambio"
+git push
+
+# Crear nuevo release con nueva versión
+gh release create v1.1.0 AppNetwork.zip \
+  --title "Network Engineering Assistant v1.1.0" \
+  --notes "- Mejora X\n- Fix en Y\n- Nueva función Z"
+```
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Stack tecnológico
 
-| Layer | Technology |
+| Capa | Tecnología |
 |---|---|
 | Framework | Flutter 3.x |
-| Language | Dart 3.x |
-| State | Provider |
-| Navigation | GoRouter |
-| Architecture | Clean Architecture |
-| Platforms | Android, iOS, Windows, macOS, Linux |
+| Lenguaje | Dart 3.x |
+| Estado | Provider |
+| Navegación | GoRouter |
+| Arquitectura | Clean Architecture |
+| Plataformas | Android, iOS, Windows, macOS, Linux |
 
 ---
 
-## 📚 Networking Topics Covered
+## 📚 Temas de redes cubiertos
 
-- IPv4 Subnetting (CIDR, binary, step-by-step)
-- IPv6 Addressing (expansion, compression, types)
+- IPv4 Subnetting (CIDR, binario, paso a paso)
+- IPv6 Addressing (expansión, compresión, tipos)
 - VLSM (Variable Length Subnet Masking)
-- VLAN Design (IEEE 802.1Q)
+- Diseño de VLANs (IEEE 802.1Q)
 - Router-on-a-Stick (inter-VLAN routing)
-- Static Routing (IPv4/IPv6, floating static)
-- RIP v2 (concepts, limitations)
-- OSPF (link-state, areas, DR/BDR)
+- Rutas Estáticas (IPv4/IPv6, flotantes)
+- RIP v2 (conceptos y limitaciones)
+- OSPF (link-state, áreas, DR/BDR)
 - NAT (Static, Dynamic, PAT/Overload)
-- ACL (Standard, Extended, named, wildcard masks)
+- ACL (Estándar, Extendida, nombrada, wildcard masks)
 
 ---
 
-## 📄 License
+## 📄 Licencia
 
-MIT License — free to use, modify, and distribute.
-=======
-# Network_Enginnering_Assistant
->>>>>>> 6a45f67040659e66cb9e94b9f6d7c47629848759
+MIT License — libre para usar, modificar y distribuir.
+
+---
+
+<div align="center">
+
+Desarrollado con ⬡ para estudiantes y profesionales de redes
+
+</div>
