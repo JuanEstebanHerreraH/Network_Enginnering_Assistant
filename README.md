@@ -11,9 +11,10 @@
 ![Flutter](https://img.shields.io/badge/Flutter_3.x-02569B?style=for-the-badge&logo=flutter&logoColor=white)
 ![Dart](https://img.shields.io/badge/Dart_3.x-0175C2?style=for-the-badge&logo=dart&logoColor=white)
 ![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
-![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=apple&logoColor=white)
 ![Windows](https://img.shields.io/badge/Windows-0078D4?style=for-the-badge&logo=windows&logoColor=white)
+![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=apple&logoColor=white)
 ![macOS](https://img.shields.io/badge/macOS-000000?style=for-the-badge&logo=apple&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 
 </div>
 
@@ -24,6 +25,8 @@
 Network Engineering Assistant es una aplicación multiplataforma construida en Flutter para estudiantes, administradores de red y candidatos a certificaciones CCNA/CCNP. Permite realizar cálculos de direccionamiento IP, diseño de redes con VLANs, generación automática de configuraciones Cisco IOS y aprendizaje guiado con ejemplos reales.
 
 Toda la lógica de cálculo vive en las capas `/core` y `/engine`, completamente separada de la UI y 100% testeable.
+
+> 📦 **Release actual:** incluye builds para **Android** y **Windows**. El código fuente soporta también iOS, macOS, Linux y Web.
 
 ---
 
@@ -74,172 +77,83 @@ lib/
 - Flutter 3.x y Dart 3.x
 - Un emulador, dispositivo físico o escritorio configurado
 
-### Pasos
-
 **1. Instalar Flutter**
 ```bash
 # macOS vía Homebrew
 brew install --cask flutter
 
-# Verificar instalación
+# Verificar
 flutter doctor
 ```
-> Para Windows, descarga el SDK desde https://docs.flutter.dev/get-started/install
+> Para Windows descarga el SDK desde https://docs.flutter.dev/get-started/install
 
 **2. Clonar el repositorio**
 ```bash
-git clone https://github.com/TU_USUARIO/network-engineering-assistant.git
+git clone https://github.com/EzequielAngel0/network-engineering-assistant.git
 cd network-engineering-assistant
 ```
 
-**3. Instalar dependencias**
+**3. Instalar dependencias y ejecutar**
 ```bash
 flutter pub get
+flutter run                  # detecta automáticamente
+flutter run -d android
+flutter run -d windows
+flutter run -d macos
+flutter run -d linux
 ```
-
-**4. Ejecutar la app**
-```bash
-flutter run                  # Detecta dispositivo automáticamente
-flutter run -d android       # Emulador/dispositivo Android
-flutter run -d windows       # Escritorio Windows
-flutter run -d macos         # Escritorio macOS
-flutter run -d linux         # Escritorio Linux
-```
-
-Abre la app en tu dispositivo o emulador ✅
 
 ---
 
-## 📦 Compilar ejecutables para usuarios finales
+## 📦 Compilar para distribución
 
-### Android APK (instalación directa)
+### Android APK
 ```bash
 flutter build apk --release
 # Salida: build/app/outputs/flutter-apk/app-release.apk
-```
-
-### Android AAB (Google Play Store)
-```bash
-flutter build appbundle --release
-# Salida: build/app/outputs/bundle/release/app-release.aab
-```
-
-### iOS IPA (requiere macOS + Xcode)
-```bash
-flutter build ipa --release
-# Luego exportar desde Xcode Organizer
 ```
 
 ### Windows EXE
 ```bash
 flutter build windows --release
 # Salida: build/windows/x64/runner/Release/
-# Comprime la carpeta Release/ completa para distribución
+# Comprime la carpeta Release/ completa para distribuir
 ```
 
-### macOS App / DMG
+### iOS (requiere macOS + Xcode)
+```bash
+flutter build ipa --release
+```
+
+### macOS
 ```bash
 flutter build macos --release
-# Salida: build/macos/Build/Products/Release/network_engineering_assistant.app
-
-# Crear DMG (requiere create-dmg):
-brew install create-dmg
-create-dmg \
-  --volname "Network Engineering Assistant" \
-  --window-size 600 400 \
-  --icon-size 100 \
-  --app-drop-link 400 150 \
-  "NetworkEngineeringAssistant.dmg" \
-  "build/macos/Build/Products/Release/"
 ```
 
-### Linux AppImage
+### Linux
 ```bash
 flutter build linux --release
 # Salida: build/linux/x64/release/bundle/
-# Empaquetar con appimagetool: https://appimage.github.io/appimagetool/
+```
+
+### Web
+```bash
+flutter build web --release
+# Salida: build/web/
 ```
 
 ---
 
-## ☁️ Subir el proyecto a GitHub (Git Bash)
+## 📱 Plataformas disponibles
 
-### 1️⃣ Crear repositorio en GitHub
-1. Ve a [github.com](https://github.com) e inicia sesión
-2. Clic en **New repository**
-3. Nombre: `network-engineering-assistant`
-4. **Sin** README, **sin** .gitignore → clic en **Create repository**
-
-### 2️⃣ Inicializar y subir desde Git Bash
-
-```bash
-# Entrar a la carpeta del proyecto
-cd /ruta/a/network-engineering-assistant
-
-# Inicializar git
-git init
-
-# Agregar todos los archivos
-git add .
-
-# Primer commit
-git commit -m "feat: initial release — Network Engineering Assistant"
-
-# Renombrar rama principal
-git branch -M main
-
-# Conectar con tu repositorio remoto (reemplaza TU_USUARIO)
-git remote add origin https://github.com/TU_USUARIO/network-engineering-assistant.git
-
-# Subir el código
-git push -u origin main
-```
-
-> 💡 Si Git Bash pide credenciales, usa un **Personal Access Token** en lugar de tu contraseña:
-> GitHub → Settings → Developer settings → Personal access tokens → Generate new token
-
----
-
-## 🏷️ Publicar el ZIP en GitHub Releases (para usuarios finales)
-
-### Opción A — Desde la interfaz web de GitHub
-
-1. Ve a tu repositorio en GitHub
-2. En el panel derecho, clic en **Releases → Create a new release**
-3. En **Tag version** escribe: `v1.0.0`
-4. En **Release title** escribe: `Network Engineering Assistant v1.0.0`
-5. En la descripción agrega las novedades o un changelog
-6. En la sección **Attach binaries**, arrastra y suelta tu archivo `AppNetwork.zip`
-7. Clic en **Publish release** 🚀
-
-Los usuarios podrán descargar el ZIP directamente desde:
-`https://github.com/TU_USUARIO/network-engineering-assistant/releases`
-
-### Opción B — Desde Git Bash con GitHub CLI
-
-```bash
-# Instalar GitHub CLI si no lo tienes: https://cli.github.com
-gh auth login
-
-# Crear el release y subir el ZIP en un solo comando
-gh release create v1.0.0 AppNetwork.zip \
-  --title "Network Engineering Assistant v1.0.0" \
-  --notes "Primera versión pública. Incluye: Subnetting IPv4/IPv6, VLSM, VLANs, NAT, ACL y modo aprendizaje."
-```
-
-### 3️⃣ Para actualizaciones futuras
-
-```bash
-# Cuando tengas cambios nuevos:
-git add .
-git commit -m "feat: descripción del cambio"
-git push
-
-# Crear nuevo release con nueva versión
-gh release create v1.1.0 AppNetwork.zip \
-  --title "Network Engineering Assistant v1.1.0" \
-  --notes "- Mejora X\n- Fix en Y\n- Nueva función Z"
-```
+| Plataforma | Release actual | Código fuente |
+|---|:---:|:---:|
+| Android | ✅ APK incluido | ✅ |
+| Windows | ✅ EXE incluido | ✅ |
+| iOS | 🔜 Próximamente | ✅ |
+| macOS | 🔜 Próximamente | ✅ |
+| Linux | 🔜 Próximamente | ✅ |
+| Web | 🔜 Próximamente | ✅ |
 
 ---
 
@@ -252,7 +166,7 @@ gh release create v1.1.0 AppNetwork.zip \
 | Estado | Provider |
 | Navegación | GoRouter |
 | Arquitectura | Clean Architecture |
-| Plataformas | Android, iOS, Windows, macOS, Linux |
+| Plataformas | Android, iOS, Windows, macOS, Linux, Web |
 
 ---
 
