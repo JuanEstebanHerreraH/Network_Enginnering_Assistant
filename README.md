@@ -12,9 +12,6 @@
 ![Dart](https://img.shields.io/badge/Dart_3.x-0175C2?style=for-the-badge&logo=dart&logoColor=white)
 ![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
 ![Windows](https://img.shields.io/badge/Windows-0078D4?style=for-the-badge&logo=windows&logoColor=white)
-![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=apple&logoColor=white)
-![macOS](https://img.shields.io/badge/macOS-000000?style=for-the-badge&logo=apple&logoColor=white)
-![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 
 </div>
 
@@ -22,11 +19,9 @@
 
 ## 📌 ¿Qué es Network Engineering Assistant?
 
-Network Engineering Assistant es una aplicación multiplataforma construida en Flutter para estudiantes, administradores de red y candidatos a certificaciones CCNA/CCNP. Permite realizar cálculos de direccionamiento IP, diseño de redes con VLANs, generación automática de configuraciones Cisco IOS y aprendizaje guiado con ejemplos reales.
+Network Engineering Assistant es una aplicación para **Android y Windows** construida en Flutter para estudiantes, administradores de red y candidatos a certificaciones CCNA/CCNP. Permite realizar cálculos de direccionamiento IP, diseño de redes con VLANs, generación automática de configuraciones Cisco IOS y aprendizaje guiado con ejemplos reales.
 
 Toda la lógica de cálculo vive en las capas `/core` y `/engine`, completamente separada de la UI y 100% testeable.
-
-> 📦 **Release actual:** incluye builds para **Android** y **Windows**. El código fuente soporta también iOS, macOS, Linux y Web.
 
 ---
 
@@ -71,89 +66,52 @@ lib/
 
 ---
 
-## 🚀 Instalación local (Desarrolladores)
+## 📥 Instalación para usuarios finales
+
+1. Ve a la pestaña **[Releases](../../releases)** de este repositorio
+2. Descarga **`AppNetwork.zip`**
+3. Extrae el ZIP y entra a la carpeta de tu plataforma:
+
+| Carpeta | Archivo | Plataforma |
+|---|---|---|
+| `Android/` | `app-release.apk` | Android 6.0+ |
+| `Windows/` | `network_engineering_asistant.exe` | Windows 10/11 |
+
+**Android:** Activa *"Instalar apps de fuentes desconocidas"* en Ajustes antes de instalar el APK.
+
+**Windows:** Doble clic en el `.exe`. Si aparece aviso de SmartScreen → *"Más información → Ejecutar de todas formas"*.
+
+---
+
+## 🚀 Instalación para desarrolladores
 
 ### Requisitos previos
 - Flutter 3.x y Dart 3.x
-- Un emulador, dispositivo físico o escritorio configurado
+- Dispositivo/emulador Android o escritorio Windows
 
-**1. Instalar Flutter**
-```bash
-# macOS vía Homebrew
-brew install --cask flutter
-
-# Verificar
-flutter doctor
-```
-> Para Windows descarga el SDK desde https://docs.flutter.dev/get-started/install
-
-**2. Clonar el repositorio**
+**1. Clonar el repositorio**
 ```bash
 git clone https://github.com/EzequielAngel0/network-engineering-assistant.git
 cd network-engineering-assistant
 ```
 
-**3. Instalar dependencias y ejecutar**
+**2. Instalar dependencias y ejecutar**
 ```bash
 flutter pub get
-flutter run                  # detecta automáticamente
-flutter run -d android
-flutter run -d windows
-flutter run -d macos
-flutter run -d linux
+flutter run -d android     # Android
+flutter run -d windows     # Windows
 ```
 
----
-
-## 📦 Compilar para distribución
-
-### Android APK
+**3. Compilar release**
 ```bash
+# Android APK
 flutter build apk --release
 # Salida: build/app/outputs/flutter-apk/app-release.apk
-```
 
-### Windows EXE
-```bash
+# Windows EXE
 flutter build windows --release
 # Salida: build/windows/x64/runner/Release/
-# Comprime la carpeta Release/ completa para distribuir
 ```
-
-### iOS (requiere macOS + Xcode)
-```bash
-flutter build ipa --release
-```
-
-### macOS
-```bash
-flutter build macos --release
-```
-
-### Linux
-```bash
-flutter build linux --release
-# Salida: build/linux/x64/release/bundle/
-```
-
-### Web
-```bash
-flutter build web --release
-# Salida: build/web/
-```
-
----
-
-## 📱 Plataformas disponibles
-
-| Plataforma | Release actual | Código fuente |
-|---|:---:|:---:|
-| Android | ✅ APK incluido | ✅ |
-| Windows | ✅ EXE incluido | ✅ |
-| iOS | 🔜 Próximamente | ✅ |
-| macOS | 🔜 Próximamente | ✅ |
-| Linux | 🔜 Próximamente | ✅ |
-| Web | 🔜 Próximamente | ✅ |
 
 ---
 
@@ -166,7 +124,7 @@ flutter build web --release
 | Estado | Provider |
 | Navegación | GoRouter |
 | Arquitectura | Clean Architecture |
-| Plataformas | Android, iOS, Windows, macOS, Linux, Web |
+| Plataformas | Android · Windows |
 
 ---
 
