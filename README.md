@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ⬡ Network Engineering Assistant
 
 A professional, cross-platform Flutter application for network design, subnetting calculations, and Cisco IOS configuration generation.
@@ -214,3 +215,6 @@ flutter build apk --release
 ## 📄 License
 
 MIT License — free to use, modify, and distribute.
+=======
+# Network_Enginnering_Assistant
+>>>>>>> 6a45f67040659e66cb9e94b9f6d7c47629848759
